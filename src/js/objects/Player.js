@@ -13,6 +13,8 @@ export default class Player extends Character {
 
     this.jumpTimer = 0
 
+    this.gameEnded = false
+
     this.movement = {
         up: this.game.input.keyboard.addKey(Phaser.Keyboard.W),
         down: this.game.input.keyboard.addKey(Phaser.Keyboard.S),
@@ -21,11 +23,19 @@ export default class Player extends Character {
       }
   }
 
+  endGame () {
+    this.gameEnded = true
+  }
+
   update() {
 
       // game.physics.arcade.collide(player, layer);
 
       this.body.velocity.x = 0;
+
+      if (this.gameEnded) {
+        return
+      }
 
       if (this.movement.left.isDown)
       {
