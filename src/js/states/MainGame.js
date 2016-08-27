@@ -18,7 +18,6 @@ export default class MainGame {
 
     this.game.physics.arcade.gravity.y = 250;
 
-    this.playerGroup = this.game.add.group()
 
     this.enemyGroup = this.game.add.group()
     this.AISpawner = new AISpawner(this.game, this.enemyGroup)
@@ -30,9 +29,22 @@ export default class MainGame {
 
     timer.start();
 
-    this.player = new Player(this.game, this.playerGroup)
+    this.player = new Player(this.game)
 
     this.pyramid = new Pyramid(this.game, 0, this.game.height - 200)
+
+    this.lifes = 10
+
+    this.lifesText = this.game.add.text(
+      this.game.world.width - 300,
+      10,
+      "lifes: " + this.lifes,
+      {
+        font: '30px Arial',
+        fill: '#ff0044',
+        align: 'center'
+      }
+    )
 
   }
 
@@ -49,7 +61,14 @@ export default class MainGame {
 
 
   update() {
+    this.game.physics.arcade.collide(this.player, this.pyramid);
+    this.game.physics.arcade.collide(this.pyramid, this.enemyGroup, this.pyramidCollision, null, this);
+  }
 
+  pyramidCollision(pyramid, enemy) {
+    enemy.pushBack()
+    this.lifes--
+    this.lifesText.setText("lifes: " + this.lifes)
   }
 
   render () {

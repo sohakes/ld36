@@ -11,8 +11,15 @@ export default class AIEnemy extends Character {
 
   }
 
+  pushBack() {
+    this.body.velocity.x = 100;
+  }
+
   update () {
-    this.body.velocity.x = -150;
+    this.body.acceleration.x = -40;
+    if (this.body.velocity.x < -150) {
+      this.body.velocity.x  = -150;
+    }
 
     if (this.facing != 'left')
     {
