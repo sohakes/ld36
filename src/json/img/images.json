@@ -2,5 +2,9 @@
   {
     "spriteName": "background",
     "fileName": "background2.png"
+  },
+  {
+    "spriteName": "cave",
+    "fileName": "cave.png"
   }
 ]

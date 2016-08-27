@@ -2,7 +2,7 @@ import GameSprite from './GameSprite'
 
 export default class Character extends GameSprite {
   constructor (game, x, y, key, frame, group) {
-    super(game, x, y, key, frame)
+    super(game, x, y, key, frame, group)
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
 

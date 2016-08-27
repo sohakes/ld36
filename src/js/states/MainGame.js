@@ -1,6 +1,7 @@
 const GAME = require('../../json/game.json')
 import Player from '../objects/Player'
 import AISpawner from '../objects/AISpawner'
+import Pyramid from '../objects/Pyramid'
 
 export default class MainGame {
   preload () {
@@ -23,13 +24,15 @@ export default class MainGame {
     this.AISpawner = new AISpawner(this.game, this.enemyGroup)
 
     //create timer
-    let timer = this.game.time.create(false);
+    let timer = this.game.time.create(false)
 
-    timer.loop(2000, this.spawnNewEnemy, this);
+    timer.loop(2000, this.spawnNewEnemy, this)
 
     timer.start();
 
-    this.player = new Player(this.game, this.playerGroup);
+    this.player = new Player(this.game, this.playerGroup)
+
+    this.pyramid = new Pyramid(this.game, 0, this.game.height - 200)
 
   }
 
