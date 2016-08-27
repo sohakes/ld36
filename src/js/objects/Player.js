@@ -4,13 +4,9 @@ export default class Player extends Character {
   constructor (game, x, y, key, frame, group) {
     super(game, x, y, key, frame, group)
 
-    this.game = game
 
-    this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
-    this.body.bounce.y = 0.2;
-    this.body.collideWorldBounds = true;
-    this.body.setSize(20, 32, 5, 16);
+
 
     this.animations.add('left', [0, 1, 2, 3], 10, true);
     this.animations.add('turn', [4], 20, true);

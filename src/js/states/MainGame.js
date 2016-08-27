@@ -1,5 +1,6 @@
 const GAME = require('../../json/game.json')
 import Player from '../objects/Player'
+import AISpawner from '../objects/AISpawner'
 
 export default class MainGame {
   preload () {
@@ -9,14 +10,31 @@ export default class MainGame {
   create () {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+
     this.game.time.desiredFps = 30;
 
     this.bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
 
     this.game.physics.arcade.gravity.y = 250;
 
-    this.player = new Player(this.game, 32, 32, 'dude');
+    this.playerGroup = this.game.add.group()
 
+    this.enemyGroup = this.game.add.group()
+    this.AISpawner = new AISpawner(this.game, this.enemyGroup)
+
+    //create timer
+    let timer = this.game.time.create(false);
+
+    timer.loop(2000, this.spawnNewEnemy, this);
+
+    timer.start();
+
+    this.player = new Player(this.game, 32, 32, 'dude', null, this.playerGroup);
+
+  }
+
+  spawnNewEnemy() {
+    this.AISpawner.spawnEnemy();
   }
 
 
