@@ -20,6 +20,7 @@ export default class Preload {
     this.loadSprites()
     this.loadAudios()
     this.loadButtons()
+    this.loadHardcoded()
   }
 
   init (data) {
@@ -27,9 +28,12 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('kraiom', true, false, this.data)
+    this.state.start('game', true, false, this.data)
   }
 
+  loadHardcoded () {
+    this.load.spritesheet('dude', 'assets/img/dude.png', 32, 48);
+  }
 
   loadSprites () {
     const sprites = ['map_spritesheet']
