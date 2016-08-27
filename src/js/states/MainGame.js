@@ -29,7 +29,7 @@ export default class MainGame {
 
     timer.start();
 
-    this.player = new Player(this.game, 32, 32, 'dude', null, this.playerGroup);
+    this.player = new Player(this.game, this.playerGroup);
 
   }
 
@@ -46,8 +46,6 @@ export default class MainGame {
 
 
   update() {
-
-      this.player.update()
 
   }
 

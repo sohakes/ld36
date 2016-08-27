@@ -6,8 +6,8 @@ export default class AISpawner {
     this.enemyGroup = enemyGroup
   }
 
-  spawnEnemyPosition(x, y, key, frame) {
-    new AIEnemy(this.game, x, y, key, frame, this.enemyGroup)
+  spawnEnemyPosition(x, y) {
+    new AIEnemy(this.game, x, y, this.enemyGroup)
   }
 
   spawnEnemy() {
