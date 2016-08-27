@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LD36</title>
+  <meta charset="utf-8" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-color: #000000;
+      width: 100%;
+      height: 100%;
+    }
+
+    #target {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 1200px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="target"></div>
+</body>
+<script src="assets/libs/phaser.min.js"></script>
+<script type="text/javascript" src="assets/js/ld36.min.js"></script>
+<script>
+  GAME({
+    target: 'target'
+  });
+</script>
+</html>
