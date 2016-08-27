@@ -1,4 +1,4 @@
-import Game from './Game'
+import MainGame from './MainGame'
 import Preload from './Preload'
 import Boot from './Boot'
 import Kraiom from './Kraiom'
@@ -21,7 +21,7 @@ window.GAME = function (handler) {
 
   game.state.add('boot', Boot)
   game.state.add('preload', Preload)
-  game.state.add('game', Game)
+  game.state.add('mainGame', MainGame)
   game.state.add('kraiom', Kraiom)
   game.state.add('menu', Menu)
   game.state.add('about', About)

@@ -1,7 +1,7 @@
 const GAME = require('../../json/game.json')
 import Player from '../objects/Player'
 
-export default class Game {
+export default class MainGame {
   preload () {
     this.game.stage.backgroundColor = '#000000'
   }

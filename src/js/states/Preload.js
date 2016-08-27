@@ -28,7 +28,7 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('game', true, false, this.data)
+    this.state.start('mainGame', true, false, this.data)
   }
 
   loadHardcoded () {

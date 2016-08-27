@@ -2,21 +2,15 @@ import GameSprite from './GameSprite'
 
 export default class Character extends GameSprite {
   constructor (game, x, y, key, frame, group) {
-    group = group || game.world
-
     super(game, x, y, key, frame)
 
-    //this.anchor.set(0.5)
+    this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
-    this.animation = null
+    this.body.bounce.y = 0.2;
+    this.body.collideWorldBounds = true;
+    this.body.setSize(20, 32, 5, 16);
 
-    group.add(this)
   }
 
-  getCenter () {
-    return {
-      x: this.x + this.width / 2,
-      y: this.y + this.height / 2
-    }
-  }
+
 }

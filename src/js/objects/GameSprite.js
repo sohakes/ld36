@@ -4,7 +4,7 @@ export default class GameSprite extends Phaser.Sprite {
 
     super(game, x, y, key, frame)
 
-    //this.anchor.set(0.5)
+    this.game = game
 
     this.animation = null
 
