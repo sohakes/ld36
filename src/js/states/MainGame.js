@@ -2,6 +2,7 @@ const GAME = require('../../json/game.json')
 import Player from '../objects/Player'
 import AISpawner from '../objects/AISpawner'
 import Pyramid from '../objects/Pyramid'
+import AIEnemy from '../objects/AIEnemy'
 
 export default class MainGame {
   preload () {
@@ -29,11 +30,26 @@ export default class MainGame {
 
     timer.start();
 
-    this.player = new Player(this.game)
+    this.playerGroup = this.game.add.group()
+    this.player = new Player(this.game, this.playerGroup)
 
-    this.pyramid = new Pyramid(this.game, 0, this.game.height - 200)
+    this.pyramidGroup = this.game.add.group()
+    this.pyramid = new Pyramid(this.game, 0, this.game.height - 200, this.pyramidGroup)
 
     this.lifes = 10
+
+    this.score = 0
+
+    this.scoreText = this.game.add.text(
+      this.game.world.width - 600,
+      10,
+      "score: " + this.score,
+      {
+        font: '30px Arial',
+        fill: '#ff0044',
+        align: 'center'
+      }
+    )
 
     this.lifesText = this.game.add.text(
       this.game.world.width - 300,
@@ -46,9 +62,14 @@ export default class MainGame {
       }
     )
 
+    this.gameEnded = false
+
   }
 
   spawnNewEnemy() {
+    if (this.gameEnded) {
+      return
+    }
     this.AISpawner.spawnEnemy();
   }
 
@@ -60,15 +81,31 @@ export default class MainGame {
   }
 
 
-  update() {
-    this.game.physics.arcade.collide(this.player, this.pyramid);
-    this.game.physics.arcade.collide(this.pyramid, this.enemyGroup, this.pyramidCollision, null, this);
+  update () {
+    this.game.physics.arcade.collide(this.playerGroup, this.pyramidGroup);
+    this.game.physics.arcade.collide(this.pyramidGroup, this.enemyGroup, this.pyramidCollision, null, this);
+    if (this.lifes <= 9) {
+      this.endGame()
+    }
+    this.scoreText.setText("score: " + this.score)
   }
 
-  pyramidCollision(pyramid, enemy) {
+  pyramidCollision (pyramid, enemy) {
     enemy.pushBack()
     this.lifes--
     this.lifesText.setText("lifes: " + this.lifes)
+
+  }
+
+  endGame () {
+    if (this.gameEnded) {
+      return
+    }
+    this.gameEnded = true
+    this.pyramid.destroy()
+    this.player.endGame()
+    console.log('calling endgame for enemy')
+    this.enemyGroup.callAll('endGame')
   }
 
   render () {

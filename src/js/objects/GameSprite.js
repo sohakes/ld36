@@ -8,6 +8,8 @@ export default class GameSprite extends Phaser.Sprite {
 
     this.animation = null
 
+    this.spriteGroup = group
+
     group.add(this)
   }
 
