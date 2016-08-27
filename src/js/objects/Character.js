@@ -6,8 +6,9 @@ export default class Character extends GameSprite {
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
-    this.body.bounce.y = 0.2;
     this.body.collideWorldBounds = true;
+    this.body.gravity.y = 1000;
+    this.body.maxVelocity.y = 500;
     this.body.setSize(20, 32, 5, 16);
 
   }
