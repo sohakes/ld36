@@ -48,6 +48,8 @@ export default class MainGame {
 
     this.arrowGroup = this.game.add.group();
 
+    this.treeGroup = this.game.add.group();
+
     this.scoreText = this.game.add.text(
       this.game.world.width - 600,
       10,
@@ -92,10 +94,6 @@ export default class MainGame {
 
   }
 
-  arrowCollision (arrow, enemy) {
-    arrow.enemyHit(enemy, this.score)
-  }
-
   update () {
     if (this.lives <= 0) {
       this.endGame()
@@ -107,6 +105,8 @@ export default class MainGame {
       this.pyramidCollision, null, this);
     this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
       this.arrowCollision, null, this);
+    this.game.physics.arcade.collide(this.treeGroup, this.enemyGroup,
+      this.treeCollision, null, this);
 
     //Didn't find another way, hackish
     this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
@@ -126,10 +126,24 @@ export default class MainGame {
 
   }
 
+  treeCollision (tree, enemy) {
+    console.log('ARVRE')
+    enemy.pushBack();
+    tree.hit();
+  }
+
+  arrowCollision (arrow, enemy) {
+    arrow.enemyHit(enemy, this.treeGroup)
+  }
+
   pyramidCollision (pyramid, enemy) {
     enemy.pushBack()
     this.lives--
     this.lifeBar.removeLife()
+  }
+
+  getTreeGroup () {
+    return this.treeGroup;
   }
 
   endGame () {
