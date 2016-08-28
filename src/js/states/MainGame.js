@@ -134,6 +134,7 @@ export default class MainGame {
 
   arrowCollision (arrow, enemy) {
     arrow.enemyHit(enemy, this.treeGroup)
+    this.score++
   }
 
   pyramidCollision (pyramid, enemy) {
