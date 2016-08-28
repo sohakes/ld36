@@ -12,6 +12,10 @@
     "fileName": "Calendar.png"
   },
   {
+    "spriteName": "calendar-arrow",
+    "fileName": "CalendarArrow.png"
+  },
+  {
     "spriteName": "arrow",
     "fileName": "Arrow.png"
   }
