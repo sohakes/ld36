@@ -11,7 +11,7 @@ export default class AISpawner {
   }
 
   spawnEnemy() {
-    this.spawnEnemyPosition(this.game.width, 40, 'dude')
+    this.spawnEnemyPosition(this.game.width, this.game.height - 100, 'dude')
   }
 
 }

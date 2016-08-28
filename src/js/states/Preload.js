@@ -34,6 +34,7 @@ export default class Preload {
   loadHardcoded () {
     this.load.spritesheet('dude', 'assets/img/dude.png', 32, 48);
     this.load.spritesheet('player', 'assets/img/lion.png', 120, 83);
+    this.load.spritesheet('zombie', 'assets/img/dragon-man.png', 58, 67);
   }
 
   loadSprites () {

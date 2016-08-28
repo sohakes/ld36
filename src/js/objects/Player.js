@@ -2,7 +2,7 @@ import Character from './Character'
 
 export default class Player extends Character {
   constructor (game, group) {
-    super(game, 50, 50, 'player', null, group)
+    super(game, 400, game.height - 100, 'player', null, group)
 
     //this.animations.add('left', [0, 1, 2, 3], 10, true);
     //this.animations.add('turn', [4], 20, true);

@@ -3,18 +3,18 @@ import Character from './Character'
 export default class AIEnemy extends Character {
   constructor (game, x, y, group) {
     //Since we're adding the animations here, the key should prob be here too
-    super(game, x, y, 'dude', null, group)
+    super(game, x, y, 'zombie', null, group)
 
-    this.animations.add('left', [0, 1, 2, 3], 10, true)
-    this.animations.add('turn', [4], 20, true)
-    this.animations.add('right', [5, 6, 7, 8], 10, true)
+    this.body.setSize(20, 32, 5, 16);
+
+    this.anchor.setTo(0.5, 0.5)
+    this.body.setSize(50, 51);
+
+    this.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, true)
 
     this.gameEnded = false
     this.body.drag.x = 100
-
-    this.game = game;
-
-    this.hp = 100;
+    this.scale.x = -1
 
   }
 
@@ -43,19 +43,11 @@ export default class AIEnemy extends Character {
         this.facing = 'left'
     }
     if (Math.abs(this.body.acceleration.x) > 1) {
-      this.animations.play('left')
+      this.animations.play('walk')
 
     } else {
       this.animations.stop()
       this.frame = 0;
-    }
-  }
-
-  damage (dmg) {
-    this.hp -= dmg;
-    if (this.hp <= 0) {
-      this.game.score += 1;
-      this.kill();
     }
   }
 
