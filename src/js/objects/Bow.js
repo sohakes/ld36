@@ -68,12 +68,14 @@ export default class Bow extends GameSprite {
         if (! this.arrow) {
           this.anchor.setTo(-0.5, 0.5);
           this.arrow = new Arrow(this.game);
-          this.arrow.enchant(this.powersManager.popPower())
           this.arrow.anchor.setTo(-0.23, 0.5);
         }
         this.rotation = this.game.physics.arcade.angleToPointer(this.player);
         this.arrow.reset(this.x, this.y);
         this.arrow.rotation = this.rotation;
+        if (this.arrow.power === -1 && this.powersManager.currentPower !== -1) {
+          this.arrow.enchant(this.powersManager.popPower())
+        }
       }
 
     } else if (this.bowTime) {
