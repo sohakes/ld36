@@ -6,5 +6,13 @@
   {
     "spriteName": "cave",
     "fileName": "cave.png"
+  },
+  {
+    "spriteName": "calendar",
+    "fileName": "Calendar.png"
+  },
+  {
+    "spriteName": "arrow",
+    "fileName": "Arrow.png"
   }
 ]

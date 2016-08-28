@@ -3,6 +3,7 @@ import Player from '../objects/Player'
 import AISpawner from '../objects/AISpawner'
 import Pyramid from '../objects/Pyramid'
 import AIEnemy from '../objects/AIEnemy'
+import Calendar from '../objects/Calendar'
 
 export default class MainGame {
   preload () {
@@ -64,6 +65,8 @@ export default class MainGame {
 
     this.gameEnded = false
 
+    this.calendar = new Calendar(this.game, this.game.width, 0)
+
   }
 
   spawnNewEnemy() {
@@ -84,7 +87,7 @@ export default class MainGame {
   update () {
     this.game.physics.arcade.collide(this.playerGroup, this.pyramidGroup);
     this.game.physics.arcade.collide(this.pyramidGroup, this.enemyGroup, this.pyramidCollision, null, this);
-    if (this.lifes <= 9) {
+    if (this.lifes <= 0) {
       this.endGame()
     }
     this.scoreText.setText("score: " + this.score)

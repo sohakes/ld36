@@ -36,7 +36,7 @@ export default class Preload {
   }
 
   loadSprites () {
-    const sprites = ['map_spritesheet']
+    const sprites = []
     const spriteImgs = SPRITEIMGS
 
     sprites.forEach(sprite => this.load.atlasJSONHash(
