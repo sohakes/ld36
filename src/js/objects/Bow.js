@@ -56,14 +56,15 @@ export default class Bow extends GameSprite {
 
       if (! this.alive) {
         this.revive();
-        this.anchor.setTo(0, 0.5);
+
       }
 
-      this.reset(
-        (this.player.left + this.player.right) / 2,
-        this.player.y + this.player.height*3/4
+      this.position.setTo(
+        this.player.body.center.x,
+        this.player.body.center.y
       );
 
+      this.anchor.setTo(-0.5, 0.5);
       if (this.bowTime < this.MAX_TIME / 2) {
         this.rotation = Math.PI/2;
       } else {
