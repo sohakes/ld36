@@ -38,7 +38,7 @@ export default class MainGame {
     this.pyramidGroup = this.game.add.group()
     this.pyramid = new Pyramid(this.game, 0, this.game.height - 200, this.pyramidGroup)
 
-    this.lifes = 10
+    this.lives = 10
 
     this.score = 0
 
@@ -117,17 +117,18 @@ export default class MainGame {
   update () {
     this.game.physics.arcade.collide(this.playerGroup, this.pyramidGroup);
     this.game.physics.arcade.collide(this.pyramidGroup, this.enemyGroup, this.pyramidCollision, null, this);
-    if (this.lifes <= 0) {
+    if (this.lives <= 0) {
       this.endGame()
     }
-    this.scoreText.setText("score: " + this.score)
 
     this.game.physics.arcade.collide(this.arrowGroup, this.enemyGroup,
         (arrow, enemy) => {
-          console.log('KILL');
           arrow.kill();
           enemy.kill();
+          this.score += 1;
         }, null, this);
+
+    this.scoreText.setText("score: " + this.score)
 
     if (this.game.input.activePointer.duration != -1) {
       this.bowTime = this.game.input.activePointer.duration;
@@ -168,7 +169,7 @@ export default class MainGame {
 
   pyramidCollision (pyramid, enemy) {
     enemy.pushBack()
-    this.lifes--
+    this.lives--
     this.lifeBar.removeLife()
   }
 
