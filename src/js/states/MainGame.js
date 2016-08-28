@@ -125,7 +125,12 @@ export default class MainGame {
     }
     this.scoreText.setText("score: " + this.score)
 
-
+    this.game.physics.arcade.collide(this.arrowGroup, this.enemyGroup,
+        (arrow, enemy) => {
+          console.log('KILL');
+          arrow.kill();
+          enemy.kill();
+        }, null, this);
 
     if (this.game.input.activePointer.duration != -1) {
       this.bowTime = this.game.input.activePointer.duration;
