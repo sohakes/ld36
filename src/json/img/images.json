@@ -20,6 +20,14 @@
     "fileName": "Arrow.png"
   },
   {
+    "spriteName": "pre-arrow",
+    "fileName": "5.png"
+  },
+  {
+    "spriteName": "pre-bow",
+    "fileName": "6.png"
+  },
+  {
     "spriteName": "life-start",
     "fileName": "part-1.png"
   },

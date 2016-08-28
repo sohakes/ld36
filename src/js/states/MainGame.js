@@ -48,6 +48,9 @@ export default class MainGame {
     this.MAX_TIME = 1000;
     this.bowTime = 0;
 
+    this.bow = this.game.add.sprite(0, 0, 'pre-bow');
+    this.bow.anchor.setTo(0, 0.5);
+
     this.scoreText = this.game.add.text(
       this.game.world.width - 600,
       10,
@@ -78,7 +81,15 @@ export default class MainGame {
 
 
   shootArrow() {
+    var speed = this.ARROW_SPEED;
+    var rate = (this.bowTime > this.MAX_TIME) ? 1 : this.bowTime / this.MAX_TIME;
+    this.bowTime = 0;
+
+    if (rate < 0.5)
+      return;
+
     console.log('shooting arrow');
+
     var arrow = this.game.add.sprite(0, 0, 'arrow');
     arrow.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(arrow, Phaser.Physics.ARCADE);
@@ -91,22 +102,17 @@ export default class MainGame {
         this.player.y + this.player.height*3/4
     );
 
-    var speed = this.ARROW_SPEED;
-
-    if (this.bowTime < this.MAX_TIME) {
-      speed *= (this.bowTime / this.MAX_TIME);
-    }
+    speed *= rate;
 
     console.log(speed)
 
-    arrow.rotation = this.game.physics.arcade.angleToPointer(this.player);
+    arrow.rotation = this.bow.rotation;
 
     arrow.body.velocity.x = Math.cos(arrow.rotation) * speed;
     arrow.body.velocity.y = Math.sin(arrow.rotation) * speed;
 
     this.arrowGroup.add(arrow);
 
-    this.bowTime = 0;
   }
 
 
@@ -134,8 +140,26 @@ export default class MainGame {
 
     if (this.game.input.activePointer.duration != -1) {
       this.bowTime = this.game.input.activePointer.duration;
+
+      if (! this.bow.alive) {
+        this.bow.revive();
+      }
+
+      if (this.bowTime < this.MAX_TIME / 2) {
+        this.bow.rotation = Math.PI/2;
+      } else {
+        this.bow.rotation = this.game.physics.arcade.angleToPointer(this.player);
+        console.log(this.bow.rotation);
+      }
+
+      this.bow.reset(
+        (this.player.left + this.player.right) / 2,
+        this.player.y + this.player.height*3/4
+      );
+
     } else if (this.bowTime) {
       this.shootArrow();
+      this.bow.kill();
     }
 
     this.arrowGroup.forEachAlive((arrow) => {
