@@ -18,5 +18,17 @@
   {
     "spriteName": "arrow",
     "fileName": "Arrow.png"
+  },
+  {
+    "spriteName": "life-start",
+    "fileName": "part-1.png"
+  },
+  {
+    "spriteName": "life-middle",
+    "fileName": "part-2.png"
+  },
+  {
+    "spriteName": "life-fill",
+    "fileName": "life-rectangle.png"
   }
 ]

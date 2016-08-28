@@ -4,6 +4,7 @@ import AISpawner from '../objects/AISpawner'
 import Pyramid from '../objects/Pyramid'
 import AIEnemy from '../objects/AIEnemy'
 import Calendar from '../objects/Calendar'
+import LifeBar from '../objects/LifeBar'
 
 export default class MainGame {
   preload () {
@@ -58,20 +59,13 @@ export default class MainGame {
       }
     )
 
-    this.lifesText = this.game.add.text(
-      this.game.world.width - 300,
-      10,
-      "lifes: " + this.lifes,
-      {
-        font: '30px Arial',
-        fill: '#ff0044',
-        align: 'center'
-      }
-    )
+
 
     this.gameEnded = false
 
-    this.calendar = new Calendar(this.game, this.game.width, 0)
+    this.calendar = new Calendar(this.game, this.game.width - 20, 20)
+
+    this.lifeBar = new LifeBar(this.game, this.game.world.width - 300, 10, 10)
 
   }
 
@@ -148,7 +142,7 @@ export default class MainGame {
   pyramidCollision (pyramid, enemy) {
     enemy.pushBack()
     this.lifes--
-    this.lifesText.setText("lifes: " + this.lifes)
+    this.lifeBar.removeLife()
   }
 
   endGame () {
