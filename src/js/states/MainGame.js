@@ -5,6 +5,7 @@ import Pyramid from '../objects/Pyramid'
 import AIEnemy from '../objects/AIEnemy'
 import Calendar from '../objects/Calendar'
 import LifeBar from '../objects/LifeBar'
+import Ui from '../ui/Ui'
 
 export default class MainGame {
   preload () {
@@ -70,6 +71,9 @@ export default class MainGame {
 
     this.lifeBar = new LifeBar(this.game, 20, 20, 10)
 
+    this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+
+    this.ui = new Ui(this.game)
   }
 
   spawnNewEnemy() {
@@ -175,8 +179,13 @@ export default class MainGame {
 
   endGame () {
     if (this.gameEnded) {
+      if (this.enterKey.isDown) {
+        this.state.start('preload', true, false, this.data)
+      }
       return
     }
+
+    this.ui.lost()
     this.gameEnded = true
     this.calendar.endGame()
     this.pyramid.destroy()
