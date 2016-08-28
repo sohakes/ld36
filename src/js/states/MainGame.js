@@ -27,7 +27,7 @@ export default class MainGame {
 
 
     this.enemyGroup = this.game.add.group()
-    this.AISpawner = new AISpawner(this.game, this.enemyGroup)
+    this.AISpawner = new AISpawner(this.game, this.enemyGroup, () => { this.score ++ })
 
     //create timer
     let timer = this.game.time.create(false)
