@@ -39,8 +39,8 @@ export default class MainGame {
     this.playerGroup = this.game.add.group()
     this.player = new Player(this.game, this.playerGroup)
 
-    this.pyramidGroup = this.game.add.group()
-    this.pyramid = new Pyramid(this.game, 0, this.game.height - 200, this.pyramidGroup)
+    this.obstacleGroup = this.game.add.group()
+    this.pyramid = new Pyramid(this.game, 0, this.game.height - 200, this.obstacleGroup, this)
 
     this.lives = 10
 
@@ -100,17 +100,15 @@ export default class MainGame {
     }
 
     this.powersManager.update()
-    this.game.physics.arcade.collide(this.playerGroup, this.pyramidGroup);
-    this.game.physics.arcade.collide(this.pyramidGroup, this.enemyGroup,
-      this.pyramidCollision, null, this);
+    this.game.physics.arcade.collide(this.playerGroup, this.pyramid);
+    this.game.physics.arcade.collide(this.obstacleGroup, this.enemyGroup,
+      this.obstacleCollision, null, this);
     this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
       this.arrowCollision, null, this);
-    this.game.physics.arcade.collide(this.treeGroup, this.enemyGroup,
-      this.treeCollision, null, this);
 
     //Didn't find another way, hackish
     this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
-    this.game.physics.arcade.collide(this.groundGroup, this.pyramidGroup);
+    this.game.physics.arcade.collide(this.groundGroup, this.obstacleGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.enemyGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.arrowGroup,
       (ground, arrow) => arrow.kill());
@@ -126,21 +124,13 @@ export default class MainGame {
 
   }
 
-  treeCollision (tree, enemy) {
-    console.log('ARVRE')
-    enemy.pushBack();
-    tree.hit();
-  }
-
   arrowCollision (arrow, enemy) {
-    arrow.enemyHit(enemy, this.treeGroup)
-    this.score++
+    arrow.enemyHit(enemy, this.obstacleGroup)
   }
 
-  pyramidCollision (pyramid, enemy) {
+  obstacleCollision (obstacle, enemy) {
+    obstacle.hit();
     enemy.pushBack()
-    this.lives--
-    this.lifeBar.removeLife()
   }
 
   getTreeGroup () {

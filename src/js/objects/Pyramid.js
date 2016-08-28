@@ -1,7 +1,7 @@
 import GameSprite from './GameSprite'
 
 export default class Pyramid extends GameSprite {
-  constructor (game, x, y, group) {
+  constructor (game, x, y, group, maingame) {
     super(game, x, y, 'junglesheet', 'cave', group)
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -13,7 +13,13 @@ export default class Pyramid extends GameSprite {
     this.body.allowGravity = false
     this.anchor.y = 1
     this.y = this.game.height - 32
+
+    this.maingame = maingame;
   }
 
+  hit () {
+    this.maingame.lives --;
+    this.maingame.lifeBar.removeLife();
+  }
 
 }

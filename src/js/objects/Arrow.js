@@ -30,7 +30,11 @@ export default class Arrow extends GameSprite {
 
   enemyHit (enemy, treeGroup) {
     if (this.power == 1) {
-      this.createTree(enemy.x + enemy.width, enemy.y + enemy.height, treeGroup);
+      console.log(enemy);
+      this.createTree(
+          enemy.body.x + enemy.body.width,
+          enemy.body.y + enemy.body.height,
+          treeGroup);
       enemy.pushBack();
     } else {
       enemy.damage(this.getDamage());
