@@ -20,6 +20,8 @@ export default class Bow extends GameSprite {
     this.ARROW_SPEED = 600;
     this.MAX_TIME = 1000;
 
+    this.kill();
+
   }
 
   shootArrow() {

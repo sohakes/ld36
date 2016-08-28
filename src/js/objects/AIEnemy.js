@@ -12,6 +12,10 @@ export default class AIEnemy extends Character {
     this.gameEnded = false
     this.body.drag.x = 100
 
+    this.game = game;
+
+    this.hp = 100;
+
   }
 
   endGame () {
@@ -44,6 +48,14 @@ export default class AIEnemy extends Character {
     } else {
       this.animations.stop()
       this.frame = 0;
+    }
+  }
+
+  damage (dmg) {
+    this.hp -= dmg;
+    if (this.hp <= 0) {
+      this.game.score += 1;
+      this.kill();
     }
   }
 
