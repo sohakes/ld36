@@ -2,7 +2,7 @@ import GameSprite from './GameSprite'
 
 export default class Pyramid extends GameSprite {
   constructor (game, x, y, group) {
-    super(game, x, y, 'cave', null, group)
+    super(game, x, y, 'junglesheet', 'cave', group)
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
 

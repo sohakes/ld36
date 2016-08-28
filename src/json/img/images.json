@@ -4,10 +4,6 @@
     "fileName": "background.png"
   },
   {
-    "spriteName": "cave",
-    "fileName": "cave.png"
-  },
-  {
     "spriteName": "calendar",
     "fileName": "Calendar.png"
   },
