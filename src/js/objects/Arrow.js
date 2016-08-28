@@ -10,12 +10,7 @@ export default class Arrow extends GameSprite {
   }
 
   getDamage () {
-    if (this.power == -1) {
-      return this.baseDmg;
-    }
-    if (this.power == 0) {
-      return this.baseDmg * 0.1;
-    }
+    return this.baseDmg
   }
 
   enchant (power) {
