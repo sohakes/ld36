@@ -44,7 +44,7 @@ export default class MainGame {
 
     this.arrowGroup = this.game.add.group();
 
-    this.ARROW_SPEED = 400;
+    this.ARROW_SPEED = 600;
     this.MAX_TIME = 1000;
     this.bowTime = 0;
 
@@ -81,38 +81,29 @@ export default class MainGame {
 
 
   shootArrow() {
+    var arrow = this.arrow;
+    this.arrow = null;
     var speed = this.ARROW_SPEED;
     var rate = (this.bowTime > this.MAX_TIME) ? 1 : this.bowTime / this.MAX_TIME;
     this.bowTime = 0;
 
-    if (rate < 0.5)
+    if (rate < 0.5) {
       return;
-
-    console.log('shooting arrow');
-
-    var arrow = this.game.add.sprite(0, 0, 'arrow');
+    }
     arrow.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(arrow, Phaser.Physics.ARCADE);
 
     arrow.checkWorldBounds = true;
     arrow.outOfBoundsKill = true;
 
-    arrow.reset(
-        (this.player.left + this.player.right) / 2,
-        this.player.y + this.player.height*3/4
-    );
-
     speed *= rate;
 
     console.log(speed)
-
-    arrow.rotation = this.bow.rotation;
 
     arrow.body.velocity.x = Math.cos(arrow.rotation) * speed;
     arrow.body.velocity.y = Math.sin(arrow.rotation) * speed;
 
     this.arrowGroup.add(arrow);
-
   }
 
 
@@ -143,19 +134,26 @@ export default class MainGame {
 
       if (! this.bow.alive) {
         this.bow.revive();
-      }
-
-      if (this.bowTime < this.MAX_TIME / 2) {
-        this.bow.rotation = Math.PI/2;
-      } else {
-        this.bow.rotation = this.game.physics.arcade.angleToPointer(this.player);
-        console.log(this.bow.rotation);
+        this.bow.anchor.setTo(0, 0.5);
       }
 
       this.bow.reset(
         (this.player.left + this.player.right) / 2,
         this.player.y + this.player.height*3/4
       );
+
+      if (this.bowTime < this.MAX_TIME / 2) {
+        this.bow.rotation = Math.PI/2;
+      } else {
+        if (! this.arrow) {
+          this.bow.anchor.setTo(-0.5, 0.5);
+          this.arrow = this.game.add.sprite(0, 0, 'pre-arrow');
+          this.arrow.anchor.setTo(-0.23, 0.5);
+        }
+        this.bow.rotation = this.game.physics.arcade.angleToPointer(this.player);
+        this.arrow.reset(this.bow.x, this.bow.y);
+        this.arrow.rotation = this.bow.rotation;
+      }
 
     } else if (this.bowTime) {
       this.shootArrow();
