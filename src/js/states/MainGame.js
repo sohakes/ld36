@@ -112,6 +112,8 @@ export default class MainGame {
     this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.pyramidGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.enemyGroup);
+    this.game.physics.arcade.collide(this.groundGroup, this.arrowGroup,
+      (ground, arrow) => arrow.kill());
 
     this.scoreText.setText("score: " + this.score)
 
