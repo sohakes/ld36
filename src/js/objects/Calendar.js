@@ -10,13 +10,24 @@ export default class Calendar extends Phaser.Group {
     this.arrow = this.create(-this.calendar.width/2 , this.calendar.height/2, 'calendar-arrow')
     this.arrow.anchor.x = 0.5
     this.arrow.anchor.y = 1
-    this.arrow.pivot.x = 0.5
-    this.arrow.pivot.y = 1
+    this.currentSeason = 0;
+    this.gameEnded = false
+  }
 
+  endGame () {
+    this.gameEnded = true
   }
 
   update () {
-    this.arrow.angle += 1
+    if (this.gameEnded) {
+      return
+    }
+    this.arrow.angle += 0.2
+    this.updateSeason()
+  }
+
+  updateSeason () {
+    this.currentSeason = Math.floor((this.arrow.angle % 360) / 90)
   }
 
 

@@ -16,7 +16,7 @@ export default class MainGame {
 
     this.game.time.desiredFps = 30;
 
-    this.bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+    this.bg = this.game.add.tileSprite(0, 0, 1200, 780, 'background');
 
     this.game.physics.arcade.gravity.y = 250;
 
@@ -156,9 +156,9 @@ export default class MainGame {
       return
     }
     this.gameEnded = true
+    this.calendar.endGame()
     this.pyramid.destroy()
     this.player.endGame()
-    console.log('calling endgame for enemy')
     this.enemyGroup.callAll('endGame')
   }
 
