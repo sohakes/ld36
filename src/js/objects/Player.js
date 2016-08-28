@@ -2,11 +2,13 @@ import Character from './Character'
 
 export default class Player extends Character {
   constructor (game, group) {
-    super(game, 32, 32, 'dude', null, group)
+    super(game, 50, 50, 'player', null, group)
 
-    this.animations.add('left', [0, 1, 2, 3], 10, true);
-    this.animations.add('turn', [4], 20, true);
-    this.animations.add('right', [5, 6, 7, 8], 10, true);
+    //this.animations.add('left', [0, 1, 2, 3], 10, true);
+    //this.animations.add('turn', [4], 20, true);
+    //this.animations.add('right', [5, 6, 7, 8], 10, true);
+    this.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
+    this.animations.add('walk', [5, 6, 7, 8, 9, 10], 10, true);
 
     this.movement = this.game.input.keyboard.createCursorKeys();
     this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -14,6 +16,12 @@ export default class Player extends Character {
     this.jumpTimer = 0
 
     this.gameEnded = false
+    this.anchor.setTo(0.45, 0.5)
+
+    //1 = right, -1 = left
+    this.side = 1
+
+    this.body.setSize(80, 55, 10);
 
     this.movement = {
         up: this.game.input.keyboard.addKey(Phaser.Keyboard.W),
@@ -28,6 +36,7 @@ export default class Player extends Character {
   }
 
   update() {
+      this.scale.x = this.side
 
       // game.physics.arcade.collide(player, layer);
 
@@ -39,21 +48,24 @@ export default class Player extends Character {
 
       if (this.movement.left.isDown)
       {
+        this.side = -1
+
           this.body.velocity.x = -150;
 
           if (this.facing != 'left')
           {
-              this.animations.play('left');
+              this.animations.play('walk');
               this.facing = 'left';
           }
       }
       else if (this.movement.right.isDown)
       {
+          this.side = 1
           this.body.velocity.x = 150;
 
           if (this.facing != 'right')
           {
-              this.animations.play('right');
+              this.animations.play('walk');
               this.facing = 'right';
           }
       }
@@ -61,7 +73,7 @@ export default class Player extends Character {
       {
           if (this.facing != 'idle')
           {
-              this.animations.stop();
+              this.animations.play('idle');
 
               if (this.facing == 'left')
               {
