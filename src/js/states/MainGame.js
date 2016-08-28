@@ -65,7 +65,7 @@ export default class MainGame {
 
     this.calendar = new Calendar(this.game, this.game.width - 20, 20)
 
-    this.lifeBar = new LifeBar(this.game, this.game.world.width - 300, 10, 10)
+    this.lifeBar = new LifeBar(this.game, 20, 20, 10)
 
   }
 
