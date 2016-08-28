@@ -6,6 +6,7 @@ import AIEnemy from '../objects/AIEnemy'
 import Calendar from '../objects/Calendar'
 import LifeBar from '../objects/LifeBar'
 import PowersManager from '../objects/PowersManager'
+import GroundGenerator from '../objects/GroundGenerator'
 import Bow from '../objects/Bow'
 import Ui from '../ui/Ui'
 
@@ -71,6 +72,10 @@ export default class MainGame {
     this.powersManager = new PowersManager(this.game, this.calendar)
 
     this.bow = new Bow(this.game, this.arrowGroup, this.player, this.powersManager)
+
+    this.groundGroup = this.game.add.group()
+
+    new GroundGenerator(this.game, this.groundGroup).generateGround()
   }
 
   spawnNewEnemy() {
@@ -102,6 +107,11 @@ export default class MainGame {
       this.pyramidCollision, null, this);
     this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
       this.arrowCollision, null, this);
+
+    //Didn't find another way, hackish
+    this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
+    this.game.physics.arcade.collide(this.groundGroup, this.pyramidGroup);
+    this.game.physics.arcade.collide(this.groundGroup, this.enemyGroup);
 
     this.scoreText.setText("score: " + this.score)
 

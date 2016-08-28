@@ -76,7 +76,7 @@ export default class Player extends Character {
           }
       }
 
-      if (this.movement.up.isDown && this.body.onFloor() && this.game.time.now > this.jumpTimer)
+      if (this.movement.up.isDown && this.body.touching.down && this.game.time.now > this.jumpTimer)
       {
         this.body.velocity.y = -500;
         this.jumpTimer = this.game.time.now + 750;
