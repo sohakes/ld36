@@ -5,6 +5,7 @@ import Pyramid from '../objects/Pyramid'
 import AIEnemy from '../objects/AIEnemy'
 import Calendar from '../objects/Calendar'
 import LifeBar from '../objects/LifeBar'
+import PowersManager from '../objects/PowersManager'
 import Ui from '../ui/Ui'
 
 export default class MainGame {
@@ -74,6 +75,8 @@ export default class MainGame {
     this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
     this.ui = new Ui(this.game)
+
+    this.powersManager = new PowersManager(this.game, this.calendar)
   }
 
   spawnNewEnemy() {
@@ -119,15 +122,19 @@ export default class MainGame {
 
 
   update () {
+    this.powersManager.update()
     this.game.physics.arcade.collide(this.playerGroup, this.pyramidGroup);
     this.game.physics.arcade.collide(this.pyramidGroup, this.enemyGroup, this.pyramidCollision, null, this);
     if (this.lives <= 0) {
       this.endGame()
     }
 
-    this.game.physics.arcade.collide(this.arrowGroup, this.enemyGroup,
+    this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
         (arrow, enemy) => {
-          arrow.kill();
+          if (arrow.power != 0) {
+            arrow.kill();
+          }
+
           enemy.kill();
           this.score += 1;
         }, null, this);
@@ -153,6 +160,7 @@ export default class MainGame {
         if (! this.arrow) {
           this.bow.anchor.setTo(-0.5, 0.5);
           this.arrow = this.game.add.sprite(0, 0, 'pre-arrow');
+          this.arrow.power = this.powersManager.popPower()
           this.arrow.anchor.setTo(-0.23, 0.5);
         }
         this.bow.rotation = this.game.physics.arcade.angleToPointer(this.player);
