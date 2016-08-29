@@ -2,7 +2,7 @@ import GameSprite from './GameSprite'
 import Arrow from './Arrow'
 
 export default class Bow extends GameSprite {
-  constructor (game, arrowGroup, obstacleGroup, meteorGroup, player, powersManager) {
+  constructor (game, arrowGroup, obstacleGroup, meteorGroup, fireGroup, player, powersManager) {
     super(game, 0, 0, 'pre-bow')
 
     this.player = player
@@ -14,6 +14,7 @@ export default class Bow extends GameSprite {
     this.arrowGroup = arrowGroup
     this.obstacleGroup = obstacleGroup
     this.meteorGroup = meteorGroup
+    this.fireGroup = fireGroup
 
     this.bowTime = 0;
 
@@ -75,7 +76,7 @@ export default class Bow extends GameSprite {
       } else {
         if (! this.arrow) {
           this.anchor.setTo(-0.5, 0.5);
-          this.arrow = new Arrow(this.game, null, this.obstacleGroup, this.meteorGroup);
+          this.arrow = new Arrow(this.game, null, this.obstacleGroup, this.meteorGroup, this.fireGroup);
           this.arrow.anchor.setTo(-0.23, 0.5);
         }
         this.rotation = this.game.physics.arcade.angleToPointer(this.player);

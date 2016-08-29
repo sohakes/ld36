@@ -69,13 +69,16 @@ export default class MainGame {
 
     this.powersManager = new PowersManager(this.game, this.calendar)
 
-    this.bow = new Bow(this.game, this.arrowGroup, this.obstacleGroup, this.meteorGroup, this.player, this.powersManager)
+
 
     this.groundGroup = this.game.add.group()
 
     new GroundGenerator(this.game, this.groundGroup).generateGround()
 
     this.fireGroup = this.game.add.group()
+
+    this.bow = new Bow(this.game, this.arrowGroup, this.obstacleGroup,
+      this.meteorGroup, this.fireGroup, this.player, this.powersManager)
   }
 
 
@@ -124,7 +127,7 @@ export default class MainGame {
   }
 
   arrowCollision (arrow, enemy) {
-    arrow.enemyHit(enemy, this.fireGroup)
+    arrow.enemyHit(enemy)
   }
 
   meteorCollision (meteor, enemy) {
