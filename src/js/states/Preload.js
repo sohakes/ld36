@@ -36,6 +36,7 @@ export default class Preload {
     this.load.spritesheet('player', 'assets/img/lion.png', 120, 83);
     this.load.spritesheet('zombie', 'assets/img/dragon-man.png', 58, 67);
     this.load.spritesheet('calendarsheet', 'assets/img/Calendar.png', 80, 80);
+    this.load.spritesheet('dino', 'assets/img/tyrannosaurus-1.png', 151, 105);
   }
 
   loadSprites () {

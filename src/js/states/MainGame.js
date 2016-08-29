@@ -30,11 +30,6 @@ export default class MainGame {
     this.AISpawner = new AISpawner(this.game, this.enemyGroup, () => { this.score ++ })
 
     //create timer
-    let timer = this.game.time.create(false)
-
-    timer.loop(2000, this.spawnNewEnemy, this)
-
-    timer.start();
 
     this.playerGroup = this.game.add.group()
     this.player = new Player(this.game, this.playerGroup)
@@ -80,12 +75,7 @@ export default class MainGame {
     new GroundGenerator(this.game, this.groundGroup).generateGround()
   }
 
-  spawnNewEnemy() {
-    if (this.gameEnded) {
-      return
-    }
-    this.AISpawner.spawnEnemy();
-  }
+
 
 
   init (data) {
@@ -98,6 +88,7 @@ export default class MainGame {
     if (this.lives <= 0) {
       this.endGame()
     }
+
 
     this.powersManager.update()
     this.game.physics.arcade.collide(this.playerGroup, this.pyramid);
@@ -147,6 +138,7 @@ export default class MainGame {
 
     this.ui.lost()
     this.gameEnded = true
+    this.game.gameEnded = true
     this.calendar.endGame()
     this.pyramid.destroy()
     this.player.endGame()

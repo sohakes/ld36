@@ -22,6 +22,7 @@ export default class Calendar extends Phaser.Group {
     if (this.gameEnded) {
       return
     }
+
     this.arrow.angle += 0.2
     this.updateSeason()
   }
@@ -31,7 +32,6 @@ export default class Calendar extends Phaser.Group {
     if (angle < 0) {
       angle = 360 + angle
     }
-    console.log(this.currentSeason + ' ' + angle)
     this.currentSeason = Math.floor((angle % 360) / 90)
   }
 

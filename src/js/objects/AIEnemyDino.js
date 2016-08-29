@@ -1,22 +1,22 @@
-import Character from './Character'
+import AIEnemy from './AIEnemy'
 
-export default class AIEnemy extends Character {
-  constructor (game, x, y, key, frame, group, incScore) {
+export default class Dino extends AIEnemy {
+  constructor (game, x, y, group, incScore) {
     //Since we're adding the animations here, the key should prob be here too
-    super(game, x, y, key, frame, group)
+    super(game, x, y, 'dino', null, group)
 
     this.body.setSize(20, 32, 5, 16);
 
     this.anchor.setTo(0.5, 0.5)
-    this.body.setSize(50, 51);
+    this.body.setSize(110, 80, 20);
 
-    this.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, true)
+    this.animations.add('walk', [6, 7, 8, 9, 10, 11, 12, 13], 10, true)
 
     this.gameEnded = false
     this.body.drag.x = 100
-    this.scale.x = -1
+    this.scale.x = 1
 
-    this.hp = 100;
+    this.hp = 200;
     this.incrementScore = incScore
   }
 
@@ -32,11 +32,11 @@ export default class AIEnemy extends Character {
 
   update () {
     if (!this.gameEnded) {
-      this.body.acceleration.x = -109
+      this.body.acceleration.x = -139
     }
 
-    if (this.body.velocity.x < -150) {
-      this.body.velocity.x  = -150
+    if (this.body.velocity.x < -180) {
+      this.body.velocity.x  = -180
     }
 
     if (this.facing != 'left')

@@ -1,9 +1,9 @@
 import Character from './Character'
 
 export default class AIEnemy extends Character {
-  constructor (game, x, y, key, frame, group, incScore) {
+  constructor (game, x, y, group, incScore) {
     //Since we're adding the animations here, the key should prob be here too
-    super(game, x, y, key, frame, group)
+    super(game, x, y, 'zombie', null, group)
 
     this.body.setSize(20, 32, 5, 16);
 
