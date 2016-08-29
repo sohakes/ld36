@@ -14,14 +14,14 @@ export default class AISpawner {
   }
 
 
-  getProbFromTime() {
+  getProbFromTime(time) {
     //Hardest difficulty in 2 minutes
     let timeRunning = this.game.time.totalElapsedSeconds()
-    if (timeRunning > 120) {
+    if (timeRunning > time) {
       return 0.8
     }
 
-    return 0.2 + this.game.time.totalElapsedSeconds() * 0.6 / 180
+    return 0.2 + this.game.time.totalElapsedSeconds() * 0.6 / time
   }
 
   getIntervalFromTime() {
@@ -36,12 +36,22 @@ export default class AISpawner {
       + Math.random() * 500 * (120 - timeRunning) / 120
   }
 
+  unlucky() {
+    return Math.random() < this.getProbFromTime(300) - 0.2
+  }
+
   spawnEnemyPosition(x, y) {
-    console.log(this.getProbFromTime())
-    if (Math.random() < this.getProbFromTime()) {
-      new AIEnemyDino(this.game, x, y, this.enemyGroup, this.incScore)
+    console.log(this.getProbFromTime(120))
+    let enemy = null
+    if (Math.random() < this.getProbFromTime(120)) {
+      enemy = new AIEnemyDino(this.game, x, y, this.enemyGroup, this.incScore)
     } else {
-      new AIEnemyZombie(this.game, x, y, this.enemyGroup, this.incScore)
+      enemy = new AIEnemyZombie(this.game, x, y, this.enemyGroup, this.incScore)
+    }
+    if (this.unlucky()) {
+      enemy.scale.x *= 1.5
+      enemy.scale.y *= 1.5
+      enemy.hp += 100
     }
   }
 

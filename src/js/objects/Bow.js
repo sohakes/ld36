@@ -51,6 +51,9 @@ export default class Bow extends GameSprite {
   }
 
   updateIndependent() {
+    if (this.game.gameEnded) {
+      return
+    }
     if (this.game.input.activePointer.duration != -1) {
       this.bowTime = this.game.input.activePointer.duration;
 
