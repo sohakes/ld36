@@ -7,9 +7,19 @@ export default class PowersManager {
     this.cooldown = false
     this.timer = this.game.time.create(false)
     this.currentPower = -1;
+    this.seasonToFrame = [1, 3, 2, 0]
+    this.currentPowerImg = this.game.add.sprite(this.game.width - 300, 20, 'calendarsheet')
   }
 
   update() {
+    this.currentPowerImg.frame = this.seasonToFrame[this.calendar.currentSeason]
+
+    if (this.cooldown) {
+      this.currentPowerImg.tint = 0x8A8A8A
+    } else {
+      this.currentPowerImg.tint = 0xFFFFFF
+    }
+
     if (this.powerButton.isDown && !this.cooldown) {
       this.cooldown = true
       console.log("activated")

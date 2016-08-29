@@ -15,6 +15,15 @@ export default class Arrow extends GameSprite {
 
   enchant (power) {
     this.power = power
+    if (power == 0) {
+      this.tint = 0x766CFF
+    } else if (power == 1) {
+      this.tint = 0xACFFA2
+    } else if (power == 2) {
+      this.tint = 0xFF7575
+    } else if (power == 3) {
+      this.tint = 0x4D1717
+    }
   }
 
   createTree(x, y, treeGroup) {
