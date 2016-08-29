@@ -34,5 +34,9 @@
   {
     "spriteName": "life-fill",
     "fileName": "life-rectangle.png"
+  },
+  {
+    "spriteName": "key_e",
+    "fileName": "key_e.png"
   }
 ]
