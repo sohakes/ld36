@@ -91,7 +91,7 @@ export default class MainGame {
   }
 
   update () {
-    if (this.lives <= 0) {
+    if (this.lives <= 9) {
       this.endGame()
     }
 
@@ -146,7 +146,7 @@ export default class MainGame {
   endGame () {
     if (this.gameEnded) {
       if (this.enterKey.isDown) {
-        this.state.start('preload', true, false, this.data)
+        this.game.state.restart()
       }
       return
     }
@@ -162,7 +162,6 @@ export default class MainGame {
 
   render () {
 
-      this.game.debug.text(this.game.time.suggestedFps, 32, 32);
 
       // game.debug.text(game.time.physicsElapsed, 32, 32);
       // game.debug.body(player);
