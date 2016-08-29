@@ -28,11 +28,11 @@ export default class AISpawner {
     //Hardest difficulty in 5 minutes
     let timeRunning = this.game.time.totalElapsedSeconds()
     if (timeRunning > 180) {
-      return 500 + Math.random() * 500 //0.2 to 0.7 second
+      return 1000 + Math.random() * 500 //0.2 to 0.7 second
     }
 
 
-    return 500 + (180 - timeRunning) * 750 / 180
+    return 1000 + (180 - timeRunning) * 750 / 180
       + Math.random() * 750 * (180 - timeRunning) / 180
   }
 
