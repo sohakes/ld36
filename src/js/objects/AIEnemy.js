@@ -75,8 +75,15 @@ export default class AIEnemy extends Character {
     this.hp -= dmg;
     if (this.hp <= 0) {
       this.incrementScore(this.increment);
-      this.kill();
+      this.die();
     }
+  }
+
+  die() {
+    this.body.enable = false
+    this.game.add.tween(this)
+      .to( { alpha: 0 }, 200, Phaser.Easing.Linear.None, true, 0, 0, false)
+      .onComplete.add(() => this.kill(), this);
   }
 
   champion () {
