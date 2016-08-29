@@ -2,6 +2,16 @@ const SPRITEIMGS = require('../../json/img/images.json')
 
 export default class Preload {
   preload () {
+    WebFontConfig = {
+      active: () => { game.fontsReady = true },
+      google: {
+        families: ['Macondo']
+      }
+    };
+
+    this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+
     let styling = {
       font: 'Courier',
       fontSize: '30px',
