@@ -48,10 +48,7 @@ export default class AISpawner {
       enemy = new AIEnemyZombie(this.game, x, y, this.enemyGroup, this.incScore)
     }
     if (this.unlucky()) {
-      enemy.scale.x *= 1.5
-      enemy.scale.y *= 1.5
-      enemy.hp += 100
-      enemy.increment++
+      enemy.champion();
     }
   }
 

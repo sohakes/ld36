@@ -86,4 +86,13 @@ export default class AIEnemy extends Character {
     }
   }
 
+  champion () {
+    this.scale.x *= 1.5
+    this.scale.y *= 1.5
+    this.hp *= 3
+    this.accel /= 2
+    this.maxVel /= 2
+    this.increment *= 2
+  }
+
 }
