@@ -2,7 +2,7 @@ import Character from './Character'
 
 export default class Player extends Character {
   constructor (game, group) {
-    super(game, 400, game.height - 100, 'player', null, group)
+    super(game, 150, game.height - 150, 'player', null, group)
 
     //this.animations.add('left', [0, 1, 2, 3], 10, true);
     //this.animations.add('turn', [4], 20, true);
@@ -21,6 +21,8 @@ export default class Player extends Character {
     //1 = right, -1 = left
     this.side = 1
 
+    this.animations.play('idle');
+
     this.body.setSize(80, 55, 10);
 
     this.movement = {
@@ -36,7 +38,7 @@ export default class Player extends Character {
   }
 
   update() {
-      this.scale.x = this.side
+      /*this.scale.x = this.side
 
       // game.physics.arcade.collide(player, layer);
 
@@ -92,7 +94,7 @@ export default class Player extends Character {
       {
         this.body.velocity.y = -500;
         this.jumpTimer = this.game.time.now + 750;
-      }
+      }*/
 
   }
 

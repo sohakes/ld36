@@ -18,6 +18,7 @@ export default class Dino extends AIEnemy {
 
     this.hp = 200;
     this.incrementScore = incScore
+    this.increment = 2
   }
 
   endGame () {
@@ -53,12 +54,6 @@ export default class Dino extends AIEnemy {
     }
   }
 
-  damage (dmg) {
-    this.hp -= dmg;
-    if (this.hp <= 0) {
-      this.incrementScore();
-      this.kill();
-    }
-  }
+  
 
 }

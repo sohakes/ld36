@@ -8,7 +8,7 @@ export default class Pyramid extends GameSprite {
 
     this.body.bounce.y = 0;
     this.body.collideWorldBounds = true;
-    this.body.setSize(this.width, this.height);
+    this.body.setSize(this.width, this.height, 0, 15);
     this.body.immovable = true
     this.body.allowGravity = false
     this.anchor.y = 1

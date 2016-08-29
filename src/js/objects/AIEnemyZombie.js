@@ -1,6 +1,6 @@
-import Character from './Character'
+import AIEnemy from './AIEnemy'
 
-export default class AIEnemy extends Character {
+export default class AIEnemyZombie extends AIEnemy {
   constructor (game, x, y, group, incScore) {
     //Since we're adding the animations here, the key should prob be here too
     super(game, x, y, 'zombie', null, group)
@@ -18,6 +18,7 @@ export default class AIEnemy extends Character {
 
     this.hp = 100;
     this.incrementScore = incScore
+    this.increment = 1
   }
 
   endGame () {
@@ -53,12 +54,6 @@ export default class AIEnemy extends Character {
     }
   }
 
-  damage (dmg) {
-    this.hp -= dmg;
-    if (this.hp <= 0) {
-      this.incrementScore();
-      this.kill();
-    }
-  }
+
 
 }

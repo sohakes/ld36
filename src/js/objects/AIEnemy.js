@@ -18,6 +18,7 @@ export default class AIEnemy extends Character {
 
     this.hp = 100;
     this.incrementScore = incScore
+    this.increment = 1
   }
 
   endGame () {
@@ -56,7 +57,7 @@ export default class AIEnemy extends Character {
   damage (dmg) {
     this.hp -= dmg;
     if (this.hp <= 0) {
-      this.incrementScore();
+      this.incrementScore(this.increment);
       this.kill();
     }
   }

@@ -17,6 +17,7 @@ export default class Arrow extends GameSprite {
     this.power = power
     if (power == 0) {
       this.tint = 0x9093FF
+      this.baseDmg = 200
     } else if (power == 1) {
       this.tint = 0xACFFA2
     } else if (power == 2) {
