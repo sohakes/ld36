@@ -16,7 +16,7 @@ export default class Arrow extends GameSprite {
   enchant (power) {
     this.power = power
     if (power == 0) {
-      this.tint = 0x766CFF
+      this.tint = 0x9093FF
     } else if (power == 1) {
       this.tint = 0xACFFA2
     } else if (power == 2) {
