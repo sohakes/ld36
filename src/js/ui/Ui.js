@@ -13,10 +13,10 @@ const big_countdown_text = {
 }
 
 const smaller_text = {
-  font: 'Arial',
+  font: 'Macondo',
   fontSize: '28px',
   fontWeight: 100,
-  fill: '#ffffff'
+  fill: '#975d36'
 }
 
 export default class UI {
@@ -34,7 +34,7 @@ export default class UI {
     const lostTextSub = this.game.add.text(
       this.game.world.centerX,
       this.game.world.centerY,
-      'The pyramid was destroyed :( Press ENTER to go back to menu.',
+      'Your granary was destroyed :( Press ENTER to restart.',
       smaller_text
     )
 

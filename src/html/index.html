@@ -38,6 +38,14 @@
 <script src="assets/libs/phaser.min.js"></script>
 <script type="text/javascript" src="assets/js/ld36.min.js"></script>
 <script>
+
+  WebFontConfig = {
+    active: () => { game.fontsReady = true },
+    google: {
+      families: ['Macondo']
+    }
+  };
+
   GAME({
     target: 'target'
   });

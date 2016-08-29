@@ -47,12 +47,12 @@ export default class MainGame {
     this.meteorGroup = this.game.add.group();
 
     this.scoreText = this.game.add.text(
-      this.game.world.width - 600,
-      10,
+      this.game.world.width - 650,
+      28,
       "score: " + this.score,
       {
-        font: '30px Arial',
-        fill: '#ff0044',
+        font: '30px Macondo',
+        fill: '#9d8b4f',
         align: 'center'
       }
     )
