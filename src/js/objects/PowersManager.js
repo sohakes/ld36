@@ -24,7 +24,7 @@ export default class PowersManager {
       this.cooldown = true
       console.log("activated")
       this.currentPower = this.calendar.currentSeason;
-      this.timer.add(2000, () => this.cooldown = false, this)
+      this.timer.add(3000, () => this.cooldown = false, this)
       this.timer.start()
     }
   }
