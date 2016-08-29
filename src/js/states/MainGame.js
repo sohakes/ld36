@@ -73,6 +73,8 @@ export default class MainGame {
     this.groundGroup = this.game.add.group()
 
     new GroundGenerator(this.game, this.groundGroup).generateGround()
+
+    this.fireGroup = this.game.add.group()
   }
 
 
@@ -96,6 +98,8 @@ export default class MainGame {
       this.obstacleCollision, null, this);
     this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
       this.arrowCollision, null, this);
+    this.game.physics.arcade.overlap(this.fireGroup, this.enemyGroup,
+      (fire, enemy) => enemy.setFire(), null, this);
 
     //Didn't find another way, hackish
     this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
@@ -103,6 +107,7 @@ export default class MainGame {
     this.game.physics.arcade.collide(this.groundGroup, this.enemyGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.arrowGroup,
       (ground, arrow) => arrow.kill());
+
 
     this.scoreText.setText("score: " + this.score)
 
@@ -116,7 +121,7 @@ export default class MainGame {
   }
 
   arrowCollision (arrow, enemy) {
-    arrow.enemyHit(enemy, this.obstacleGroup)
+    arrow.enemyHit(enemy, this.obstacleGroup, this.fireGroup)
   }
 
   obstacleCollision (obstacle, enemy) {

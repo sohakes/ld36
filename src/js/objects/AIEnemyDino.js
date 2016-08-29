@@ -19,6 +19,8 @@ export default class Dino extends AIEnemy {
     this.hp = 200;
     this.incrementScore = incScore
     this.increment = 2
+    this.accel = -139
+    this.maxVel = -180
   }
 
   endGame () {
@@ -31,29 +33,8 @@ export default class Dino extends AIEnemy {
   }
 
 
-  update () {
-    if (!this.gameEnded) {
-      this.body.acceleration.x = -139
-    }
 
-    if (this.body.velocity.x < -180) {
-      this.body.velocity.x  = -180
-    }
 
-    if (this.facing != 'left')
-    {
 
-        this.facing = 'left'
-    }
-    if (Math.abs(this.body.acceleration.x) > 1) {
-      this.animations.play('walk')
-
-    } else {
-      this.animations.stop()
-      this.frame = 0;
-    }
-  }
-
-  
 
 }

@@ -19,6 +19,8 @@ export default class AIEnemyZombie extends AIEnemy {
     this.hp = 100;
     this.incrementScore = incScore
     this.increment = 1
+    this.accel = -109
+    this.maxVel = -150
   }
 
   endGame () {
@@ -31,28 +33,7 @@ export default class AIEnemyZombie extends AIEnemy {
   }
 
 
-  update () {
-    if (!this.gameEnded) {
-      this.body.acceleration.x = -109
-    }
 
-    if (this.body.velocity.x < -150) {
-      this.body.velocity.x  = -150
-    }
-
-    if (this.facing != 'left')
-    {
-
-        this.facing = 'left'
-    }
-    if (Math.abs(this.body.acceleration.x) > 1) {
-      this.animations.play('walk')
-
-    } else {
-      this.animations.stop()
-      this.frame = 0;
-    }
-  }
 
 
 

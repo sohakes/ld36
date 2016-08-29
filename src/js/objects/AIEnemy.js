@@ -19,6 +19,8 @@ export default class AIEnemy extends Character {
     this.hp = 100;
     this.incrementScore = incScore
     this.increment = 1
+    this.onFire = 0
+    this.fireTimer = this.game.time.create(false)
   }
 
   endGame () {
@@ -30,14 +32,36 @@ export default class AIEnemy extends Character {
     this.body.velocity.x = 100
   }
 
+  fireDot () {
+    if (this.onFire > 3) {
+      this.tint = 0xffffff
+      return
+    }
+    console.log("FIRE!" + this.onFire)
+    this.onFire++
+    this.damage(50)
+    this.fireTimer.add(1000, () => this.fireDot(), this)
+    this.fireTimer.start()
+
+  }
+
+  setFire() {
+
+    if (this.onFire > 0) {
+      return
+    }
+    this.tint = 0xfb9db6
+    this.fireDot()
+  }
+
 
   update () {
     if (!this.gameEnded) {
-      this.body.acceleration.x = -109
+      this.body.acceleration.x = this.accel
     }
 
-    if (this.body.velocity.x < -150) {
-      this.body.velocity.x  = -150
+    if (this.body.velocity.x < this.maxVel) {
+      this.body.velocity.x  = this.maxVel
     }
 
     if (this.facing != 'left')
