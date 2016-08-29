@@ -38,8 +38,8 @@ export default class Arrow extends GameSprite {
   }
 
 
-  createFire(x, y) {
-    let fire = this.game.add.sprite(x, y, 'junglesheet', 'fire', this.fireGroup)
+  createFire(x, lowerY) {
+    let fire = this.game.add.sprite(x, lowerY - 64, 'junglesheet', 'fire', this.fireGroup)
     fire.anchor.x = 0.5
     fire.scale.setTo(2, 2)
     this.game.physics.enable(fire, Phaser.Physics.ARCADE);
@@ -57,19 +57,21 @@ export default class Arrow extends GameSprite {
     new Meteor(this.game, x, y, this.meteorGroup);
   }
 
+  getGroundHeight () {
+    return this.game.height - 32;
+  }
+
   enemyHit (enemy) {
     if (this.power == 1) {
       console.log(enemy);
       this.createTree(
-          enemy.body.x + enemy.body.width,
-          enemy.body.y + enemy.body.height,
-          false
+          enemy.body.right,
+          this.getGroundHeight(),
+          true
       );
       enemy.pushBack();
     } else if (this.power == 2){
-      this.createFire(
-          enemy.body.center.x,
-          this.game.height - 96)
+      this.createFire(enemy.body.center.x, this.getGroundHeight())
     } else if (this.power == 3) {
       this.createMeteor(this.x, this.y);
     }
@@ -83,7 +85,7 @@ export default class Arrow extends GameSprite {
 
   groundHit (ground) {
     if (this.power == 1) {
-      this.createTree(this.body.right, this.body.bottom, true);
+      this.createTree(this.body.right, this.getGroundHeight(), true);
     } else if (this.power == 2){
       this.createFire(
           this.body.center.x,

@@ -20,14 +20,4 @@ export default class Dino extends AIEnemy {
     this.accel = -139
     this.maxVel = -180
   }
-
-  endGame () {
-    this.body.acceleration.x = 0
-    this.gameEnded = true
-  }
-
-  pushBack() {
-    this.body.velocity.x = 100
-  }
-
 }

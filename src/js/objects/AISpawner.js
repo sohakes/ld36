@@ -42,12 +42,20 @@ export default class AISpawner {
   }
 
   spawnEnemyPosition(x, y) {
-    let enemy = null
+    let EnemyType = null
+
     if (Math.random() < this.getProbFromTime(180)) {
-      enemy = new AIEnemyFlying(this.game, x, y, this.enemyGroup, this.incScore)
+      if (Math.random() < 0.5) {
+        EnemyType = AIEnemyFlying
+      } else {
+        EnemyType = AIEnemyDino
+      }
     } else {
-      enemy = new AIEnemyZombie(this.game, x, y, this.enemyGroup, this.incScore)
+      EnemyType = AIEnemyZombie
     }
+
+    let enemy = new EnemyType(this.game, x, y, this.enemyGroup, this.incScore)
+
     if (this.unlucky()) {
       enemy.champion();
     }

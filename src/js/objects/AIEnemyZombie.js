@@ -13,7 +13,8 @@ export default class AIEnemyZombie extends AIEnemy {
 
     this.gameEnded = false
     this.body.drag.x = 100
-    this.scale.x = -1
+    this.scale.x = -0.8
+    this.scale.y = 0.8
 
     this.hp = 100;
     this.incrementScore = incScore
@@ -21,14 +22,4 @@ export default class AIEnemyZombie extends AIEnemy {
     this.accel = -109
     this.maxVel = -150
   }
-
-  endGame () {
-    this.body.acceleration.x = 0
-    this.gameEnded = true
-  }
-
-  pushBack() {
-    this.body.velocity.x = 100
-  }
-
 }
