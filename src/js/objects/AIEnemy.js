@@ -35,6 +35,7 @@ export default class AIEnemy extends Character {
     this.damage(50)
     this.fireTimer.add(1000, () => this.fireDot(), this)
     this.fireTimer.start()
+    this.dead = false
 
   }
 
@@ -49,6 +50,9 @@ export default class AIEnemy extends Character {
 
 
   update () {
+    if (this.dead) {
+      return
+    }
     if (!this.gameEnded) {
       this.body.acceleration.x = this.accel
     }
@@ -81,6 +85,8 @@ export default class AIEnemy extends Character {
 
   die() {
     this.body.enable = false
+    this.animations.stop()
+    this.dead = true
     this.game.add.tween(this)
       .to( { alpha: 0 }, 200, Phaser.Easing.Linear.None, true, 0, 0, false)
       .onComplete.add(() => this.kill(), this);

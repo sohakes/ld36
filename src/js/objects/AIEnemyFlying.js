@@ -40,6 +40,9 @@ export default class AIEnemyFlying extends AIEnemy {
   }
 
   update () {
+    if (this.dead) {
+      return
+    }
     if (!this.gameEnded) {
       this.body.acceleration.x = this.accelX
       this.body.acceleration.y = this.accelY
