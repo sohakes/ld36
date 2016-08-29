@@ -44,6 +44,7 @@ export default class MainGame {
     this.arrowGroup = this.game.add.group();
 
     this.treeGroup = this.game.add.group();
+    this.meteorGroup = this.game.add.group();
 
     this.scoreText = this.game.add.text(
       this.game.world.width - 600,
@@ -68,7 +69,7 @@ export default class MainGame {
 
     this.powersManager = new PowersManager(this.game, this.calendar)
 
-    this.bow = new Bow(this.game, this.arrowGroup, this.player, this.powersManager)
+    this.bow = new Bow(this.game, this.arrowGroup, this.obstacleGroup, this.meteorGroup, this.player, this.powersManager)
 
     this.groundGroup = this.game.add.group()
 
@@ -96,27 +97,33 @@ export default class MainGame {
       this.obstacleCollision, null, this);
     this.game.physics.arcade.overlap(this.arrowGroup, this.enemyGroup,
       this.arrowCollision, null, this);
+    this.game.physics.arcade.overlap(this.meteorGroup, this.enemyGroup,
+      this.meteorCollision, null, this);
 
     //Didn't find another way, hackish
     this.game.physics.arcade.collide(this.groundGroup, this.playerGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.obstacleGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.enemyGroup);
     this.game.physics.arcade.collide(this.groundGroup, this.arrowGroup,
-      (ground, arrow) => arrow.kill());
+      (ground, arrow) => { arrow.groundHit(ground) }, null, this);
+    this.game.physics.arcade.collide(this.groundGroup, this.meteorGroup,
+        (ground, meteor) => { meteor.makeKillable() }, null, this);
 
     this.scoreText.setText("score: " + this.score)
 
     this.bow.updateIndependent()
 
 
-    this.arrowGroup.forEachAlive((arrow) => {
-      arrow.rotation = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x);
-    }, this);
+    this.arrowGroup.forEachAlive((arrow) => { arrow.updateRotation() }, this);
 
   }
 
   arrowCollision (arrow, enemy) {
-    arrow.enemyHit(enemy, this.obstacleGroup)
+    arrow.enemyHit(enemy)
+  }
+
+  meteorCollision (meteor, enemy) {
+    meteor.enemyHit(enemy);
   }
 
   obstacleCollision (obstacle, enemy) {
