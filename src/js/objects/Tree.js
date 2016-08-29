@@ -13,8 +13,8 @@ export default class Tree extends GameSprite {
     this.hits = 3;
   }
 
-  setPos(lowerX, lowerY) {
-    this.reset(lowerX - this.width, lowerY - this.height);
+  setPos(lowerX, lowerY, centered=false) {
+    this.reset(lowerX - this.width / (centered ? 2 : 1), lowerY - this.height);
   }
 
   hit () {

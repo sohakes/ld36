@@ -23,7 +23,7 @@ export default class Calendar extends Phaser.Group {
       return
     }
 
-    this.arrow.angle += 2
+    this.arrow.angle += 0.2
     this.updateSeason()
   }
 
