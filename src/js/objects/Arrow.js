@@ -89,7 +89,7 @@ export default class Arrow extends GameSprite {
     } else if (this.power == 2){
       this.createFire(
           this.body.center.x,
-          this.game.height - 96)
+          this.getGroundHeight())
     } else if (this.power == 3) {
       this.createMeteor(this.body.right, this.body.bottom);
     }
