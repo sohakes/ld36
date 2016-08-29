@@ -10,6 +10,17 @@ export default class PowersManager {
     this.seasonToFrame = [1, 3, 2, 0]
     this.currentPowerImg = this.game.add.sprite(this.game.width - 300, 20, 'calendarsheet')
     this.keye = this.game.add.sprite(this.game.width - 250, 40, 'key_e')
+
+    calendar.calendar.inputEnabled = true;
+    calendar.calendar.input.priorityID = 1;
+    calendar.calendar.input.useHandCursor = true;
+    calendar.calendar.events.onInputDown.add(this.usePower, this);
+
+    this.currentPowerImg.inputEnabled = true;
+    this.currentPowerImg.input.priorityID = 1;
+    this.currentPowerImg.input.useHandCursor = true;
+    this.currentPowerImg.events.onInputDown.add(this.usePower, this);
+
   }
 
   update() {
@@ -24,12 +35,16 @@ export default class PowersManager {
     }
 
     if (this.powerButton.isDown && !this.cooldown) {
-      this.cooldown = true
-      console.log("activated")
-      this.currentPower = this.calendar.currentSeason;
-      this.timer.add(3000, () => this.cooldown = false, this)
-      this.timer.start()
+      this.usePower()
     }
+  }
+
+  usePower() {
+    this.cooldown = true
+    console.log("activated")
+    this.currentPower = this.calendar.currentSeason;
+    this.timer.add(3000, () => this.cooldown = false, this)
+    this.timer.start()
   }
 
   popPower () {

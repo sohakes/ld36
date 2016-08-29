@@ -16,7 +16,7 @@ export default class MainGame {
   }
 
   create () {
-    
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
@@ -87,7 +87,7 @@ export default class MainGame {
 
 
   update () {
-    if (this.lives <= 9) {
+    if (this.lives <= 0) {
       this.endGame()
     }
 

@@ -2,9 +2,9 @@ const SPRITEIMGS = require('../../json/img/images.json')
 
 export default class Preload {
   preload () {
-    
+
     WebFontConfig = {
-      active: () => { game.fontsReady = true },
+      active: () => { this.game.fontsReady = true },
       google: {
         families: ['Macondo']
       }
