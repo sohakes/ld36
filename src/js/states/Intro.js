@@ -16,7 +16,7 @@ const GAME = require('../../json/game.json')
 
 export default class Intro {
   create () {
-    this.game.stage.backgroundColor = '#2D4548'
+    this.bg = this.game.add.tileSprite(0, 0, 1200, 780, 'background');
 
     this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
@@ -32,7 +32,7 @@ export default class Intro {
         separated again and will find themselves in another labyrinthic dungeon.
 
         Happily for our colored characters, the mage was good enough to give a
-        torch to each one of them, and let them free if they happen to get 
+        torch to each one of them, and let them free if they happen to get
         together five times. So, good luck!
       `,
       normal_text
@@ -72,7 +72,7 @@ export default class Intro {
       }
 
       if (this.counter === 2) {
-        this.state.start('game', true, false, {
+        this.state.start('mainGame', true, false, {
           level: 1
         })
       }

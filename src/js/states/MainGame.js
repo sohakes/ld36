@@ -16,6 +16,7 @@ export default class MainGame {
   }
 
   create () {
+    
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
@@ -79,16 +80,11 @@ export default class MainGame {
 
     this.bow = new Bow(this.game, this.arrowGroup, this.obstacleGroup,
       this.meteorGroup, this.fireGroup, this.player, this.powersManager)
-  }
-
-
-
-
-  init (data) {
     this.gameWon = false
-    this.data = data
-
   }
+
+
+
 
   update () {
     if (this.lives <= 9) {

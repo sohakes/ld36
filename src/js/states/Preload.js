@@ -2,6 +2,7 @@ const SPRITEIMGS = require('../../json/img/images.json')
 
 export default class Preload {
   preload () {
+    
     WebFontConfig = {
       active: () => { game.fontsReady = true },
       google: {
@@ -38,7 +39,7 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('mainGame', true, false, this.data)
+    this.state.start('intro', true, false, this.data)
   }
 
   loadHardcoded () {
