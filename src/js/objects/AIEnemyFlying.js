@@ -15,11 +15,12 @@ export default class AIEnemyFlying extends AIEnemy {
     this.hp = 80;
     this.incrementScore = incScore
     this.increment = 1
+    this.body.allowGravity = false
 
     this.accelX = -120
-    this.accelY = 30
+    this.accelY = 60
     this.maxVelX = -160
-    this.maxVelY = 45
+    this.maxVelY = 90
   }
 
   endGame () {
@@ -27,12 +28,15 @@ export default class AIEnemyFlying extends AIEnemy {
     this.body.acceleration.y = 0
     this.body.velocity.x = 0
     this.body.velocity.y = 0
+    console.log(this.body)
     this.gameEnded = true
   }
 
   pushBack() {
-    this.body.velocity.x = 100
+    console.log('pushing bat back')
+    this.body.velocity.x = 120
     this.body.velocity.y = -60
+    console.log(this.body)
   }
 
   update () {
@@ -61,4 +65,16 @@ export default class AIEnemyFlying extends AIEnemy {
       this.frame = 0;
     }
   }
+
+  champion () {
+    this.scale.x *= 1.5
+    this.scale.y *= 1.5
+    this.hp *= 3
+    this.accelX /= 2
+    this.accelY /= 2
+    this.maxVelX /= 2
+    this.maxVelY /= 2
+    this.increment *= 2
+  }
+
 }

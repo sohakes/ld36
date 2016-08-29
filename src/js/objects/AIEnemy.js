@@ -16,6 +16,15 @@ export default class AIEnemy extends Character {
     this.fireTimer = this.game.time.create(false)
   }
 
+  endGame () {
+    this.body.acceleration.x = 0
+    this.gameEnded = true
+  }
+
+  pushBack() {
+    this.body.velocity.x = 100
+  }
+
   fireDot () {
     if (this.onFire > 3) {
       this.tint = 0xffffff
