@@ -39,6 +39,7 @@ export default class Preload {
     this.load.spritesheet('calendarsheet', 'assets/img/Calendar.png', 80, 80);
     this.load.spritesheet('dino', 'assets/img/tyrannosaurus-1.png', 151, 105);
     this.load.spritesheet('grasshopper', 'assets/img/insect-1.png', 78, 69);
+    this.load.spritesheet('bat', 'assets/img/bat-1.png', 51, 57);
   }
 
   loadSprites () {

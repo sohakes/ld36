@@ -5,13 +5,6 @@ export default class AIEnemy extends Character {
     //Since we're adding the animations here, the key should prob be here too
     super(game, x, y, key, frame, group)
 
-    this.body.setSize(20, 32, 5, 16);
-
-    this.anchor.setTo(0.5, 0.5)
-    this.body.setSize(50, 51);
-
-    this.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, true)
-
     this.gameEnded = false
     this.body.drag.x = 100
     this.scale.x = -1
@@ -21,15 +14,6 @@ export default class AIEnemy extends Character {
     this.increment = 1
     this.onFire = 0
     this.fireTimer = this.game.time.create(false)
-  }
-
-  endGame () {
-    this.body.acceleration.x = 0
-    this.gameEnded = true
-  }
-
-  pushBack() {
-    this.body.velocity.x = 100
   }
 
   fireDot () {

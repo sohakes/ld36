@@ -1,5 +1,6 @@
 import AIEnemyDino from './AIEnemyDino'
 import AIEnemyZombie from './AIEnemyZombie'
+import AIEnemyFlying from './AIEnemyFlying'
 
 export default class AISpawner {
   constructor (game, enemyGroup, incScore) {
@@ -43,7 +44,7 @@ export default class AISpawner {
   spawnEnemyPosition(x, y) {
     let enemy = null
     if (Math.random() < this.getProbFromTime(180)) {
-      enemy = new AIEnemyDino(this.game, x, y, this.enemyGroup, this.incScore)
+      enemy = new AIEnemyFlying(this.game, x, y, this.enemyGroup, this.incScore)
     } else {
       enemy = new AIEnemyZombie(this.game, x, y, this.enemyGroup, this.incScore)
     }

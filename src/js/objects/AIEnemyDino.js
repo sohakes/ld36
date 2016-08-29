@@ -30,9 +30,4 @@ export default class Dino extends AIEnemy {
     this.body.velocity.x = 100
   }
 
-
-
-
-
-
 }
