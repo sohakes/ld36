@@ -16,6 +16,8 @@ export default class MainGame {
   }
 
   create () {
+    //FIXME pleeeeease fixme ASAP this is horrible. Please.
+    this.game.gameEnded = false
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -81,13 +83,14 @@ export default class MainGame {
     this.bow = new Bow(this.game, this.arrowGroup, this.obstacleGroup,
       this.meteorGroup, this.fireGroup, this.player, this.powersManager)
     this.gameWon = false
+
   }
 
 
 
 
   update () {
-    if (this.lives <= 0) {
+    if (this.lives <= 9) {
       this.endGame()
     }
 
