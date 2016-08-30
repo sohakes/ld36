@@ -46,7 +46,7 @@ export default class Intro {
     const pressEnter = this.add.text(
       this.game.width,
       this.game.height,
-      "Press ENTER to continue",
+      "Press ENTER or press on screen to continue",
       red_text
     )
 
@@ -57,8 +57,10 @@ export default class Intro {
   }
 
   update () {
-    if (this.enterKey.isDown && this.enterFlag === false) {
+    if ((this.enterKey.isDown && this.enterFlag === false) ||
+        this.game.input.activePointer.leftButton.isDown && this.clickFlag === false) {
       this.enterFlag = true
+      this.clickFlag = true
       this.counter++
       if (this.counter === 1) {
         this.introText.setText(`
@@ -80,6 +82,10 @@ export default class Intro {
 
       if (this.enterKey.isUp) {
         this.enterFlag = false
+      }
+
+      if (this.game.input.activePointer.leftButton.isUp) {
+        this.clickFlag = false
       }
 
   }
