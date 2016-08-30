@@ -2,7 +2,9 @@ const normal_text = {
   font: 'Macondo',
   fontSize: '28px',
   fontWeight: 100,
-  fill: '#9d8b4f'
+  fill: '#9d8b4f',
+  wrapText: true,
+  wrapTextWidth: 900
 }
 
 const red_text = {
@@ -27,7 +29,8 @@ export default class Intro {
 and whose nights are taken by contemplation
         of the heavens and the work of the Gods.
 
-Scourges of beasts and greedy plunder the land, taking the fruits of others' labor.
+Scourges of beasts and greedy plunder the land,
+        taking the fruits of others' labor.
 Defend your harvest, with arrows from your bow and sacrifices to the Gods.
 
 
@@ -60,12 +63,16 @@ Defend your harvest, with arrows from your bow and sacrifices to the Gods.
       this.clickFlag = true
       this.counter++
       if (this.counter === 1) {
-        this.introText.setText(`
-Click and hold to draw arrows, aim with the cursor.
+        this.introText.setText(`Click and hold to draw arrows, aim with the cursor.
 Use favors from the Gods by pressing E or touching the calendar.
 
 You have at your service, according to Their timely will,
-        the powers of thunder, fertility, fire and heavenly punishment.`)
+        the powers of thunder, fertility, fire and heavenly punishment.
+        
+        
+        
+        
+        `)
       }
 
       if (this.counter === 2) {
