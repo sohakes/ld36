@@ -55,7 +55,7 @@ Defend your harvest, with arrows from your bow and sacrifices to the Gods.
 
   update () {
     if ((this.enterKey.isDown && this.enterFlag === false) ||
-        this.game.input.activePointer.justPressed() && this.clickFlag === false) {
+        this.game.input.activePointer.isDown && this.clickFlag === false) {
       this.enterFlag = true
       this.clickFlag = true
       this.counter++
@@ -79,7 +79,7 @@ You have at your service, according to Their timely will,
         this.enterFlag = false
       }
 
-      if (!this.game.input.activePointer.justPressed()) {
+      if (!this.game.input.activePointer.isDown) {
         this.clickFlag = false
       }
 
