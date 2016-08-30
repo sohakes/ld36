@@ -1,15 +1,15 @@
 const normal_text = {
-  font: 'Arial',
-  fontSize: '24px',
+  font: 'Macondo',
+  fontSize: '28px',
   fontWeight: 100,
-  fill: '#ffffff'
+  fill: '#9d8b4f'
 }
 
 const red_text = {
-  font: 'Arial',
+  font: 'Macondo',
   fontSize: '28px',
   fontWeight: 100,
-  fill: '#ff0000'
+  fill: '#975d36'
 }
 
 const GAME = require('../../json/game.json')
@@ -23,17 +23,14 @@ export default class Intro {
     this.introText = this.add.text(
       GAME.width / 2,
       GAME.height / 2,
-      `        A great but bored mage wanted to have some fun. For that, he captured
-        a blue and a pink person, threw them in a dungeon, and cast a curse
-        upon them.
+      `You are a Sumerian farmer, whose days are spent on the toil of the fields,
+and whose nights are taken by contemplation
+        of the heavens and the work of the Gods.
 
-        Now they can't stay apart for more than 10 seconds, or else they simply
-        disappear in a puff of smoke. Even if they get together, they will be
-        separated again and will find themselves in another labyrinthic dungeon.
+Scourges of beasts and greedy plunder the land, taking the fruits of others' labor.
+Defend your harvest, with arrows from your bow and sacrifices to the Gods.
 
-        Happily for our colored characters, the mage was good enough to give a
-        torch to each one of them, and let them free if they happen to get
-        together five times. So, good luck!
+
       `,
       normal_text
     )
@@ -64,13 +61,11 @@ export default class Intro {
       this.counter++
       if (this.counter === 1) {
         this.introText.setText(`
-          Control the blue person with the arrow keys.
+Click and hold to draw arrows, aim with the cursor.
+Use favors from the Gods by pressing E or touching the calendar.
 
-          Control the pink person with the WASD keys.
-
-          Good luck!
-
-          (and beware of the monsters...)`)
+You have at your service, according to Their timely will,
+        the powers of thunder, fertility, fire and heavenly punishment.`)
       }
 
       if (this.counter === 2) {
