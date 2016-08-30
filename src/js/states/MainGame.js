@@ -144,7 +144,7 @@ export default class MainGame {
 
   endGame () {
     if (this.gameEnded) {
-      if (this.enterKey.isDown) {
+      if (this.enterKey.isDown || this.game.input.activePointer.isDown) {
         this.game.state.restart()
       }
       return

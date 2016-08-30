@@ -34,7 +34,7 @@ export default class UI {
     const lostTextSub = this.game.add.text(
       this.game.world.centerX,
       this.game.world.centerY,
-      'Your granary was destroyed :( Press ENTER to restart.',
+      'Your granary was destroyed :( Press the screen or ENTER to restart.',
       smaller_text
     )
 
